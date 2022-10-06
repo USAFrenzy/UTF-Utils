@@ -37,12 +37,10 @@ That is to say, if using U32ToU16() as an example:
   - ```std::vector<char32_t>```/```std::vector<wchar_t>```
 - The available types to use for the destination are:
   - ```std::basic_string<char16_t>```/```std::basic_string<wchar_t>```
-  - ```std::basic_stringview<char16_t>```/```std::basic_stringview<wchar_t>```
   - ```std::vector<char16_t>```/```std::vector<wchar_t>```
+- NOTE: The above lists the base valid type, meaning that ```std::u16string```, ```std::u16string_view```, ```std::u32string```, and ```std::u32string_view``` are supported from the get-go.
 - NOTE: the usage of ```wchar_t``` is discouraged as it's easy to mix things that shouldn't be used. The usage here is to allow for compatability between systems that use and/or require it.
-  - For example, on Windows, the usage of ```wchar_t``` would be a valid destination base char type since it's 2 bytes, but not a valid source char type due to UTF-32 requiring 32 bits.
-  <br>
-  However, on Linux, the opposite would be true since ```wchar_t``` is 4 bytes long, which is too large for UTF-16 codepoints but perfectly fine for UTF-32 codepoints.
+  - For example, on Windows, the usage of ```wchar_t``` would be a valid destination base char type since it's 2 bytes, but not a valid source char type due to UTF-32 requiring 32 bits.<br>However, on Linux, the opposite would be true since ```wchar_t``` is 4 bytes long, which is too large for UTF-16 codepoints but perfectly fine for UTF-32 codepoints.
 - NOTE: The ```startingPos``` parameter can be omitted, but I have found some helpful use cases for a starting offset, so this paramater is present for those that may find it useful.
 - All the above conversion functions follow this reasoning and will issue a compile-time error on invalid types through the usage of concepts and constraints.    
   
