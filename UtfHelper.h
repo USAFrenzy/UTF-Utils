@@ -255,7 +255,7 @@ namespace utf_helper {
 	requires utf_constraints::IsStringType<StringishType>
 	static constexpr size_t ReserveLengthForU8(StringishType&& s) {
 		UTF_ASSERT(IsLittleEndian(), "Big Endian Format Is Currently Unsupported. If Support Is Neccessary, Please Open A New Issue At "
-		                             "'https://github.com/USAFrenzy/Serenity_Logger/issues' And/Or Define either USE_STD_FORMAT Or USE_FMTLIB instead.");
+		                             "'https://github.com/USAFrenzy/UTF-Utils/issues'");
 		using namespace utf_masks;
 		using namespace utf_bounds;
 		using CharType = typename Type<StringishType>::value_type;
@@ -443,7 +443,7 @@ namespace utf_helper {
 	requires utf_constraints::IsSupportedUSource<Source>
 	constexpr bom_type DetectBom(Source&& src) {
 		UTF_ASSERT(IsLittleEndian(), "Big Endian Format Is Currently Unsupported. If Support Is Neccessary, Please Open A New Issue At "
-		                             "'https://github.com/USAFrenzy/Serenity_Logger/issues' And/Or Define either USE_STD_FORMAT Or USE_FMTLIB instead.");
+		                             "'https://github.com/USAFrenzy/UTF-Utils/issues'");
 		using namespace utf_constraints;
 		using namespace utf_boms;
 		using enum bom_type;
@@ -470,7 +470,7 @@ namespace utf_helper {
 	requires utf_constraints::IsSupportedU16Source<Source> && utf_constraints::IsSupportedU8Container<Buffer>
 	constexpr void U16ToU8(Source&& wstr, Buffer& buff, Pos&& startingPos = 0) {
 		UTF_ASSERT(IsLittleEndian(), "Big Endian Format Is Currently Unsupported. If Support Is Neccessary, Please Open A New Issue At "
-		                             "'https://github.com/USAFrenzy/Serenity_Logger/issues' And/Or Define either USE_STD_FORMAT Or USE_FMTLIB instead.");
+		                             "'https://github.com/USAFrenzy/UTF-Utils/issues'");
 		using CharType = typename Type<Buffer>::value_type;
 		using RvRef    = std::add_rvalue_reference_t<CharType>;
 		using BRef     = Ref<Buffer>;
@@ -549,7 +549,7 @@ namespace utf_helper {
 	requires utf_constraints::IsSupportedU16Source<Source> && utf_constraints::IsSupportedU32Container<Buffer>
 	constexpr void U16ToU32(Source&& wstr, Buffer& buff, Pos&& startingPos = 0) {
 		UTF_ASSERT(IsLittleEndian(), "Big Endian Format Is Currently Unsupported. If Support Is Neccessary, Please Open A New Issue At "
-		                             "'https://github.com/USAFrenzy/Serenity_Logger/issues' And/Or Define either USE_STD_FORMAT Or USE_FMTLIB instead.");
+		                             "'https://github.com/USAFrenzy/UTF-Utils/issues'");
 		using CharType = typename Type<Buffer>::value_type;
 		using BRef     = Ref<Buffer>;
 		using namespace utf_bounds;
@@ -621,7 +621,7 @@ namespace utf_helper {
 	requires utf_constraints::IsSupportedU32Source<Source> && utf_constraints::IsSupportedU8Container<Buffer>
 	constexpr void U32ToU8(Source&& sv, Buffer& buff, Pos&& startingPos = 0) {
 		UTF_ASSERT(IsLittleEndian(), "Big Endian Format Is Currently Unsupported. If Support Is Neccessary, Please Open A New Issue At "
-		                             "'https://github.com/USAFrenzy/Serenity_Logger/issues' And/Or Define either USE_STD_FORMAT Or USE_FMTLIB instead.");
+		                             "'https://github.com/USAFrenzy/UTF-Utils/issues'");
 		using CharType = typename Type<Buffer>::value_type;
 		using RvRef    = std::add_rvalue_reference_t<CharType>;
 		using BRef     = Ref<Buffer>;
