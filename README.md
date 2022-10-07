@@ -142,4 +142,8 @@ This small library was born from the want of adding Unicode support to one of my
     
 - NOTE: While ```utf32BE_bom``` and ```utf16BE_bom``` are both present as return types, they are currently not used as Big Endian support has yet to be implemented.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3) ```constexpr size_t ReserveLengthForU8(StringishType&& s)```
+  - This function takes in any supported source type from the lists found in the "How To Use" section.
+  - This function simply returns the number of bytes that would be required for encoding a UTF-16 or UTF-32 Sequence into UTF-8.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
