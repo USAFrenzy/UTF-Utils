@@ -122,9 +122,10 @@ This small library was born from the want of adding Unicode support to one of my
   - This function also checks for a BOM to bypass checking the entire sequence and return early if either UTF-16 or UTF-32 is detected.
     - This function also detects any UTF-8 BOM if present and correctly handles it, in this case, by ignoring the BOM and advancing the sequence position.
 - NOTE: If an invalid UTF-8 sequence is detected, then the offending byte sequence is overwritten with a UTF-8 encoded replacement character (```?```).
-  - In essence, this function will correct invalid UTF-8 sequences into valid UTF-8 sequences, however, it will NOT preserve the original data 
-  <br>if invalid bytes are detected due to the fact that the offending bytes are overwritten with a valid replacement character instead. This 
-  <br>is intentional so as to avoid ignoring a failed check and using the invalid sequence elsewhere, possibly causing crashes on input.
+  - In essence, this function will correct invalid UTF-8 sequences into valid UTF-8 sequences, however, it will 
+  <br>NOT preserve the original data if invalid bytes are detected due to the fact that the offending bytes are
+  <br>overwritten with a valid replacement character instead. This is intentional so as to avoid ignoring a 
+  <br>failed check and using the invalid sequence elsewhere, possibly causing crashes on input.
   - If you need to simply check if a sequence is valid, please create a copy of the sequence and pass that copy into this function.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
