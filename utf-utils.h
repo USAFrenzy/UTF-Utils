@@ -21,6 +21,8 @@ namespace utf_utils {
 #endif
 
 	using u_wchar                  = wchar_t;
+	using u_wstring                = std::basic_string<u_wchar>;
+
 	template<typename T> using Type = std::remove_cvref_t<T>;
 	template<typename T> using Ref  = std::add_lvalue_reference_t<Type<T>>;
 
