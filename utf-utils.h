@@ -20,8 +20,8 @@ namespace utf_utils {
 	#endif
 #endif
 
-	using u_wchar                  = wchar_t;
-	using u_wstring                = std::basic_string<u_wchar>;
+	using u_wchar                   = wchar_t;
+	using u_wstring                 = std::basic_string<u_wchar>;
 
 	template<typename T> using Type = std::remove_cvref_t<T>;
 	template<typename T> using Ref  = std::add_lvalue_reference_t<Type<T>>;
@@ -191,7 +191,7 @@ namespace utf_utils {
 		template<typename StringishType>
 		concept ConvertibleToSuppSV = requires {
 			// I don't support char8_t here so I need to check that char type is supported instead and then make sure that
-			// the string_view is constructible in the case that the user passes a char-like type that aliases char8_t 
+			// the string_view is constructible in the case that the user passes a char-like type that aliases char8_t
 			is_char_type_v<typename Type<StringishType>::value_type> &&
 			(is_string_view_v<StringishType> ||
 			 std::is_convertible_v<std::basic_string<typename Type<StringishType>::value_type>, std::basic_string_view<typename Type<StringishType>::value_type>>);
@@ -460,8 +460,8 @@ namespace utf_utils {
 			}
 	}
 
-	// NOTE: Decided to handle wchar_t in these functions so that it's more convenient to call these functions 
-	//       without dealing with the non-standard wchar_t sizes if wchar_t happens to be used as a paramater base. 
+	// NOTE: Decided to handle wchar_t in these functions so that it's more convenient to call these functions
+	//       without dealing with the non-standard wchar_t sizes if wchar_t happens to be used as a paramater base.
 	template<typename Source, typename Buffer, typename Pos = size_t>
 	requires utf_constraints::IsSupportedU16Source<Source> && utf_constraints::IsSupportedU8Container<Buffer>
 	constexpr void U16ToU8(Source&& wstr, Buffer& buff, Pos&& startingPos = 0) {
