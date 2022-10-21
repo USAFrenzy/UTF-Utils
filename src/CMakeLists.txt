@@ -9,7 +9,7 @@ set(UTF_UTILS_SOURCE_FILES
 )
 
 set(UTF_UTILS_HEADER_FILES
-  "${CMAKE_SOURCE_DIR}/utf-utils.h"
+  "../utf-utils.h"
 )
 
 source_group(
