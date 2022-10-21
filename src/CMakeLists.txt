@@ -9,7 +9,7 @@ set(UTF_UTILS_SOURCE_FILES
 )
 
 set(UTF_UTILS_HEADER_FILES
-  "../utf-utils.h"
+  "../include/UTF-Utils/utf-utils.h"
 )
 
 source_group(

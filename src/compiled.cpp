@@ -1,3 +1,3 @@
 #ifdef BUILD_COMPILED_LIB
-#include "../utf-utils.h"
+	#include "../include/UTF-Utils/utf-utils.h"
 #endif
