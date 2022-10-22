@@ -85,8 +85,8 @@ This small library was born from the want of adding Unicode support to one of my
   - ```std::basic_stringview<char>```/```std::basic_stringview<unsigned char>```
   - ```std::vector<char>```/```std::vector<unsigned char>```
 - The available types to use for the destination are:
-  - ```std::basic_string<char16_t>```/```std::basic_string<char16_t>```
-  - ```std::vector<char16_t>```/```std::vector<char16_t>```
+  - ```std::basic_string<char16_t>```/```std::basic_string<wchar_t>```
+  - ```std::vector<char16_t>```/```std::vector<wchar_t>```
 
 #### If using U8ToU32(): 
 - The available types to use for the source are:
@@ -94,8 +94,8 @@ This small library was born from the want of adding Unicode support to one of my
   - ```std::basic_stringview<char>```/```std::basic_stringview<unsigned char>```
   - ```std::vector<char>```/```std::vector<unsigned char>```
 - The available types to use for the destination are:
-  - ```std::basic_string<char32_t>```/```std::basic_string<char32_t>```
-  - ```std::vector<char32_t>```/```std::vector<char32_t>```
+  - ```std::basic_string<char32_t>```/```std::basic_string<wchar_t>```
+  - ```std::vector<char32_t>```/```std::vector<wchar_t>```
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 <div align="center">
