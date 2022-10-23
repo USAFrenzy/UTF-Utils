@@ -9,26 +9,26 @@ option(
 )
 
 set(UTF_UTILS_SOURCE_FILES
-  "${CMAKE_SOURCE_DIR}/src/compiled.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/compiled.cpp"
 )
 
 set(UTF_UTILS_HEADER_FILES
-  "${CMAKE_SOURCE_DIR}/include/UTF-Utils/utf-utils.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include/UTF-Utils/utf-utils.h"
 )
 
 set(UTF_UTILS_ALL_FILES ${UTF_UTILS_SOURCE_FILES} ${UTF_UTILS_HEADER_FILES})
 
 source_group(
-    TREE "${CMAKE_SOURCE_DIR}/include/UTF-Utils"
+    TREE "${CMAKE_CURRENT_SOURCE_DIR}/include/UTF-Utils"
     PREFIX "Header Files"
     FILES ${UTF_UTILS_HEADER_FILES}
 )
 source_group(
-    TREE "${CMAKE_SOURCE_DIR}/src"
+    TREE "${CMAKE_CURRENT_SOURCE_DIR}/src"
     PREFIX "Source Files"
     FILES ${UTF_UTILS_SOURCE_FILES}
 )
-include_directories("${CMAKE_SOURCE_DIR}/include")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 if(BUILD_COMPILED_LIBRARY)
 add_subdirectory(src)
