@@ -1,4 +1,5 @@
 # VS Code folder
 /.vscode
-
+/build_c
+/build_h
 /build

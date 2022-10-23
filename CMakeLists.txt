@@ -28,6 +28,7 @@ source_group(
     PREFIX "Source Files"
     FILES ${UTF_UTILS_SOURCE_FILES}
 )
+include_directories("${CMAKE_SOURCE_DIR}/include")
 
 if(BUILD_COMPILED_LIBRARY)
 add_subdirectory(src)

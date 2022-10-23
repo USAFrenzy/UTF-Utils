@@ -6,8 +6,6 @@ add_compile_definitions(BUILD_COMPILED_LIB)
 
 add_library(${PROJECT_NAME} ${UTF_UTILS_ALL_FILES})
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR})
-
 set(STANDARD 20)
 
 set_target_properties(
