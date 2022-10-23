@@ -4,28 +4,6 @@ if(BUILD_COMPILED_LIBRARY)
 
 add_compile_definitions(BUILD_COMPILED_LIB)
 
-set(UTF_UTILS_SOURCE_FILES
-  "compiled.cpp"
-)
-
-set(UTF_UTILS_HEADER_FILES
-  "../include/UTF-Utils/utf-utils.h"
-)
-
-source_group(
-    TREE "${CMAKE_SOURCE_DIR}/include/UTF-Utils"
-    PREFIX "Header Files"
-    FILES ${UTF_UTILS_HEADER_FILES}
-)
-
-source_group(
-    TREE "${CMAKE_CURRENT_SOURCE_DIR}"
-    PREFIX "Source Files"
-    FILES ${UTF_UTILS_SOURCE_FILES}
-)
-
-set(UTF_UTILS_ALL_FILES ${UTF_UTILS_SOURCE_FILES} ${UTF_UTILS_HEADER_FILES})
-
 add_library(${PROJECT_NAME} ${UTF_UTILS_ALL_FILES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR})
