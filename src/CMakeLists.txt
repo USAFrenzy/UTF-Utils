@@ -13,7 +13,7 @@ set(UTF_UTILS_HEADER_FILES
 )
 
 source_group(
-    TREE "${CMAKE_SOURCE_DIR}"
+    TREE "${CMAKE_SOURCE_DIR}/include/UTF-Utils"
     PREFIX "Header Files"
     FILES ${UTF_UTILS_HEADER_FILES}
 )
