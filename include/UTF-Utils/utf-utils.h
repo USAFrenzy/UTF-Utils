@@ -239,7 +239,7 @@ namespace utf_utils {
 
 	}    // namespace utf_constraints
 
-	static bool IsLittleEndian() {
+	[[maybe_unused]] static bool IsLittleEndian() {
 		constexpr short int val = 0x0001;
 		return reinterpret_cast<const char*>(&val)[ 0 ] ? true : false;
 	}
@@ -676,7 +676,6 @@ namespace utf_utils {
 	template<typename Source, typename Buffer, typename Pos = size_t>
 	requires utf_constraints::IsSupportedU8Source<Source> && utf_constraints::IsSupportedU16Container<Buffer>
 	constexpr void U8ToU16(Source&& sv, Buffer& buff, Pos&& startingPos = 0) {
-		using SourceChar = typename Type<Source>::value_type;
 		using CharType   = typename Type<Buffer>::value_type;
 		using RvRef      = std::add_rvalue_reference_t<CharType>;
 		using namespace utf_bounds;
@@ -749,7 +748,6 @@ namespace utf_utils {
 	template<typename Source, typename Buffer, typename Pos = size_t>
 	requires utf_constraints::IsSupportedU8Source<Source> && utf_constraints::IsSupportedU32Container<Buffer>
 	constexpr void U8ToU32(Source&& sv, Buffer& buff, Pos&& startingPos = 0) {
-		using SourceChar = typename Type<Source>::value_type;
 		using CharType   = typename Type<Buffer>::value_type;
 		using namespace utf_bounds;
 		using namespace utf_masks;
@@ -814,7 +812,6 @@ namespace utf_utils {
 	template<typename Source, typename Buffer, typename Pos = size_t>
 	requires utf_constraints::IsSupportedU32Source<Source> && utf_constraints::IsSupportedU16Container<Buffer>
 	constexpr void U32ToU16(Source&& sv, Buffer& buff, Pos&& startingPos = 0) {
-		using SourceChar = typename Type<Source>::value_type;
 		using CharType   = typename Type<Buffer>::value_type;
 		using namespace utf_bounds;
 		using namespace utf_masks;
