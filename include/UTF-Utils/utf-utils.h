@@ -239,7 +239,7 @@ namespace utf_utils {
 
 	}    // namespace utf_constraints
 
-	[[maybe_unused]] static bool IsLittleEndian() {
+	static bool IsLittleEndian() {
 		constexpr short int val = 0x0001;
 		return reinterpret_cast<const char*>(&val)[ 0 ] ? true : false;
 	}
@@ -676,6 +676,7 @@ namespace utf_utils {
 	template<typename Source, typename Buffer, typename Pos = size_t>
 	requires utf_constraints::IsSupportedU8Source<Source> && utf_constraints::IsSupportedU16Container<Buffer>
 	constexpr void U8ToU16(Source&& sv, Buffer& buff, Pos&& startingPos = 0) {
+		using SourceChar = typename Type<Source>::value_type;
 		using CharType   = typename Type<Buffer>::value_type;
 		using RvRef      = std::add_rvalue_reference_t<CharType>;
 		using namespace utf_bounds;
@@ -748,6 +749,7 @@ namespace utf_utils {
 	template<typename Source, typename Buffer, typename Pos = size_t>
 	requires utf_constraints::IsSupportedU8Source<Source> && utf_constraints::IsSupportedU32Container<Buffer>
 	constexpr void U8ToU32(Source&& sv, Buffer& buff, Pos&& startingPos = 0) {
+		using SourceChar = typename Type<Source>::value_type;
 		using CharType   = typename Type<Buffer>::value_type;
 		using namespace utf_bounds;
 		using namespace utf_masks;
@@ -812,6 +814,7 @@ namespace utf_utils {
 	template<typename Source, typename Buffer, typename Pos = size_t>
 	requires utf_constraints::IsSupportedU32Source<Source> && utf_constraints::IsSupportedU16Container<Buffer>
 	constexpr void U32ToU16(Source&& sv, Buffer& buff, Pos&& startingPos = 0) {
+		using SourceChar = typename Type<Source>::value_type;
 		using CharType   = typename Type<Buffer>::value_type;
 		using namespace utf_bounds;
 		using namespace utf_masks;
@@ -849,18 +852,27 @@ namespace utf_utils {
 		}
 
 		template<typename Src> constexpr void StoreAsUTF8(Src&& src) {
-			auto bomType { DetectBom(std::forward<Src>(src)) };
 			using enum bom_type;
 			if constexpr( std::is_same_v<std::u16string, Type<Src>> || std::is_same_v<std::u16string_view, Type<Src>> ) {
-					input.reserve(ReserveLengthForU8(src));
-					if( bomType != utf16_no_bom ) return utf_utils::U16ToU8(std::forward<Src>(src), input);
-					printf("Waning: No UTF-16 BOM Detected In Assumed UTF-16 Input.\n");
-					return;
-			} else if( std::is_same_v<std::u32string, Type<Src>> || std::is_same_v<std::u32string_view, Type<Src>> ) {
-					input.reserve(ReserveLengthForU8(src));
-					if( bomType != utf32_no_bom ) return U32ToU8(std::forward<Src>(src), input);
-					printf("Waning: No UTF-32 BOM Detected In Assumed UTF-32 Input.\n");
-					return;
+					if constexpr( DetectBom(std::forward<Src>(src)) != utf16_no_bom ) {
+							input.reserve(ReserveLengthForU8(src));
+							return utf_utils::U16ToU8(std::forward<Src>(src), input);
+					} else {
+							printf("Waning: No UTF-16 BOM Detected In Assumed UTF-16 Input.\n");
+							return;
+						}
+			} else if constexpr( std::is_same_v<std::u32string, Type<Src>> || std::is_same_v<std::u32string_view, Type<Src>> ) {
+					if constexpr( DetectBom(std::forward<Src>(src)) != utf32_no_bom ) {
+							input.reserve(ReserveLengthForU8(src));
+							return U32ToU8(std::forward<Src>(src), input);
+					} else {
+							printf("Waning: No UTF-32 BOM Detected In Assumed UTF-32 Input.\n");
+							return;
+						}
+			} else if constexpr( auto _ { std::remove_cvref_t<std::remove_extent_t<Src>> {} }; std::is_same_v<decltype(_), char*> ) {
+					input = static_cast<const char*>(src);
+			} else if constexpr( std::is_same_v<decltype(_), unsigned char*> ) {
+					for( auto& ch: src ) input += static_cast<char>(ch);
 			} else if constexpr( std::is_signed_v<char> && std::is_same_v<unsigned char, typename Type<Src>::value_type> ) {
 					for( auto& ch: src ) input += static_cast<char>(ch);
 			} else if constexpr( std::is_rvalue_reference_v<utf_utils::Type<Src>> && std::is_same_v<std::string, Type<Src>> ) {
